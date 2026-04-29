@@ -65,8 +65,6 @@
 
 	<HR />
 
-	<h2>All places</h2>
-
 	<InteractivePlaceMap {places} />
 
 	<div class="index">
@@ -78,7 +76,7 @@
 						{place.name}
 					</a>
 					{#if place.description}
-						<span class="place-desc">{place.description}</span>
+						<div class="description">{place.description.substring(0, 40)}</div>
 					{/if}
 				</div>
 			{/each}
@@ -120,6 +118,29 @@
 	}
 	:global(.other p) {
 		margin: 0;
+	}
+
+	.index {
+		margin-top: 1rem;
+		columns: 3;
+		font-size: smaller;
+	}
+
+	.index h4 {
+		margin-bottom: 0;
+	}
+
+	.index h4:first-child {
+		margin-top: 0;
+	}
+
+	.index .item {
+		margin-top: 1em;
+	}
+
+	.index .description {
+		color: var(--gray);
+		font-style: italic;
 	}
 
 	footer {
