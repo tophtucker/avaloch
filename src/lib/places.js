@@ -51,3 +51,20 @@ export function getPlaceUrl(place) {
 		`https://www.google.com/maps/search/?api=1&query=${place.coordinates.latitude},${place.coordinates.longitude}`
 	);
 }
+
+export function groupPlaces(places) {
+	const groups = {};
+	for (const place of places) {
+		const tags = place.tags?.length ? place.tags : ['Other'];
+		for (const tag of tags) {
+			if (!groups[tag]) groups[tag] = [];
+			groups[tag].push(place);
+		}
+	}
+
+	return Object.entries(groups).sort(([a], [b]) => {
+		if (a === 'Other') return 1;
+		if (b === 'Other') return -1;
+		return a.localeCompare(b);
+	});
+}
