@@ -1,6 +1,6 @@
 import { sanity } from '$lib/sanity.js';
 
-const ITINERARY_QUERY = `*[_type == "itinerary"] {
+const ITINERARY_QUERY = `*[_type == "itinerary"] | order(priority asc) {
   title,
   body[] {
       ...,

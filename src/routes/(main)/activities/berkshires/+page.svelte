@@ -2,6 +2,7 @@
 	import { PortableText } from '@portabletext/svelte';
 	import HR from '$lib/components/HR.svelte';
 	import PlaceReference from '$lib/places/PlaceReference.svelte';
+	import PlaceIndexItem from '$lib/places/PlaceIndexItem.svelte';
 	import PlaceMap from '$lib/places/PlaceMap.svelte';
 	import InteractivePlaceMap from '$lib/places/InteractivePlaceMap.svelte';
 	import { getPlacesFromItinerary, getPlaceUrl, groupPlaces } from '$lib/places/index.js';
@@ -70,16 +71,7 @@
 	<div class="index">
 		{#each groups as [tag, places]}
 			<h4 class="tag-heading">{tag}</h4>
-			{#each places as place}
-				<div class="item">
-					<a href={getPlaceUrl(place)} target="_blank" rel="noopener noreferrer">
-						{place.name}
-					</a>
-					{#if place.description}
-						<div class="description">{place.description.substring(0, 40)}</div>
-					{/if}
-				</div>
-			{/each}
+			{#each places as place}<PlaceIndexItem {place} />{/each}
 		{/each}
 	</div>
 
