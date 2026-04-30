@@ -148,7 +148,7 @@
 		.itinerary {
 			grid-template-columns: 1fr;
 		}
-		:global(.itinerary div:nth-child(2)) {
+		:global(.itinerary > div:nth-child(2)) {
 			min-height: 300px;
 		}
 		.others {
@@ -157,7 +157,7 @@
 		.other {
 			grid-template-rows: 1fr;
 		}
-		:global(.other div:nth-child(1)) {
+		:global(.other > div:nth-child(1)) {
 			display: none;
 		}
 		.index {
