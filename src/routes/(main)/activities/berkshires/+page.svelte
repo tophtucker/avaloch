@@ -126,18 +126,42 @@
 		margin-top: 0;
 	}
 
-	.index .item {
-		margin-top: 1em;
-	}
-
-	.index .description {
-		color: var(--gray);
-		font-style: italic;
-	}
-
 	footer {
 		font-size: smaller;
 		font-style: italic;
 		margin-top: 4em;
+	}
+
+	@media (max-width: 800px) {
+		.itinerary {
+			grid-template-columns: 2fr 1fr;
+		}
+		.others {
+			grid-template-columns: 1fr 1fr;
+		}
+		.index {
+			columns: 2;
+		}
+	}
+
+	@media (max-width: 500px) {
+		.itinerary {
+			grid-template-columns: 1fr;
+		}
+		:global(.itinerary div:nth-child(2)) {
+			min-height: 300px;
+		}
+		.others {
+			grid-template-columns: 1fr;
+		}
+		.other {
+			grid-template-rows: 1fr;
+		}
+		:global(.other div:nth-child(1)) {
+			display: none;
+		}
+		.index {
+			columns: 1;
+		}
 	}
 </style>
