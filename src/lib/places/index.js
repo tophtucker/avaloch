@@ -1,3 +1,5 @@
+import { quantile } from 'd3-array';
+
 export const INN_COORDINATES = { latitude: 42.35333212075441, longitude: -73.31689264984297 };
 
 export function getPlacesFromItinerary(itinerary) {
@@ -67,4 +69,14 @@ export function groupPlaces(places) {
 		if (b === 'Other') return -1;
 		return a.localeCompare(b);
 	});
+}
+
+// Returns [[S, W], [N, E]] fitted to coordinates minus outliers
+export function getBoundsWithoutOutliers(coordinates) {
+	const lats = coordinates.map((c) => c.latitude);
+	const lngs = coordinates.map((c) => c.longitude);
+	return [
+		[quantile(lats, 0.1), quantile(lngs, 0.1)],
+		[quantile(lats, 0.9), quantile(lngs, 0.9)]
+	];
 }

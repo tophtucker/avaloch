@@ -1,6 +1,6 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
-	import { INN_COORDINATES, getPlaceUrl } from './index.js';
+	import { INN_COORDINATES, getPlaceUrl, getBoundsWithoutOutliers } from './index.js';
 
 	let { places, includeInn = true } = $props();
 
@@ -41,13 +41,12 @@
 					iconAnchor: [5, 5]
 				});
 				const marker = L.marker([latitude, longitude], { icon }).addTo(map);
-
+				marker.on('click', () => window.open(getPlaceUrl(place), '_blank'));
 				marker.bindTooltip(`${place.name}`, {
 					direction: 'top',
 					offset: [0, -8],
 					className: 'imap-tooltip'
 				});
-
 				return marker;
 			});
 
@@ -70,8 +69,13 @@
 			});
 		}
 
-		const group = L.featureGroup(includeInn ? [...markers, innMarker] : markers);
-		map.fitBounds(group.getBounds(), { padding: [32, 32] });
+		map.fitBounds(
+			getBoundsWithoutOutliers([
+				...places.filter((p) => p.coordinates).map((p) => p.coordinates),
+				...(includeInn ? [INN_COORDINATES] : [])
+			]),
+			{ padding: [32, 32] }
+		);
 	});
 
 	onDestroy(() => {
