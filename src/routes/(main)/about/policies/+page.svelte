@@ -106,12 +106,27 @@
 
 	<h3>PRIVACY & DATA SECURITY</h3>
 	<p>
-		Avaloch Inn does not sell or share guest personal information. All credit card transactions are
-		processed in compliance with Payment Card Industry (PCI) Data Security Standards. To review,
-		correct, update, or request deletion of personal information you have provided to us, please
-		contact us at (413) 637-1910 or <a href="mailto:frontdesk@avalochinn.com"
-			>frontdesk@avalochinn.com</a
+		Avaloch Inn does not sell or share guest personal information, including phone numbers and SMS
+		message content. No mobile information will be shared with third parties or affiliates for
+		marketing or promotional purposes. All credit card transactions are processed in compliance with
+		Payment Card Industry (PCI) Data Security Standards. To review, correct, update, or request
+		deletion of personal information you have provided to us, please contact us at (413) 637-1910 or <a
+			href="mailto:frontdesk@avalochinn.com">frontdesk@avalochinn.com</a
 		>.
+	</p>
+
+	<h3>SMS MESSAGING</h3>
+	<p>
+		Avaloch Inn uses SMS text messaging to communicate with guests via our main phone line, (413)
+		637-1910. You can text us at that number to ask about reservations, arrival times, hotel
+		amenities, or anything else you'd normally call us about. We'll reply from the same number. By
+		texting (413) 637-1910, you agree to receive conversational SMS messages from Avaloch Inn.
+		Message frequency varies based on your inquiry. Message and data rates may apply. Reply HELP for
+		help. Reply STOP to opt out at any time. We do not send promotional or marketing texts. For SMS
+		support, you can also email us at <a href="mailto:frontdesk@avalochinn.com"
+			>frontdesk@avalochinn.com</a
+		>. No mobile information, phone numbers, SMS opt-in data, or message content will be shared with
+		third parties or affiliates for any purpose, including marketing or promotional purposes.
 	</p>
 
 	<h3>GENERAL</h3>
