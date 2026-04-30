@@ -24,12 +24,14 @@
 	"type": "module",
 	"dependencies": {
 		"@js-temporal/polyfill": "^0.5.1",
+		"@portabletext/svelte": "^3.0.1",
 		"@portabletext/to-html": "^2.0.14",
 		"@sanity/client": "^7.6.0",
 		"@sanity/image-url": "^1.1.0",
 		"d3-array": "^3.2.4",
 		"d3-dsv": "^3.0.1",
 		"d3-time": "^3.1.0",
-		"jsdom": "^27.0.0"
+		"jsdom": "^27.0.0",
+		"leaflet": "^1.9.4"
 	}
 }

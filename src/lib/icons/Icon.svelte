@@ -8,6 +8,7 @@
 	import Hamburger from './Hamburger.svelte';
 	import Close from './Close.svelte';
 	import External from './External.svelte';
+	import ArrowUp from './ArrowUp.svelte';
 
 	let { icon, ...rest } = $props();
 </script>
@@ -30,6 +31,8 @@
 	<Close {...rest} />
 {:else if icon === 'External'}
 	<External {...rest} />
+{:else if icon === 'ArrowUp'}
+	<ArrowUp {...rest} />
 {:else}
 	<div></div>
 {/if}
