@@ -1,6 +1,6 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
-	import { INN_COORDINATES, getPlaceUrl } from '$lib/places.js';
+	import { INN_COORDINATES, getPlaceUrl } from './index.js';
 
 	let { places, includeInn = true } = $props();
 

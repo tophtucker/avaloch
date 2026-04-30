@@ -1,6 +1,6 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
-	import { INN_COORDINATES, getPlaceUrl } from '$lib/places.js';
+	import { INN_COORDINATES, getPlaceUrl } from './index.js';
 
 	let { places, includeInn = true } = $props();
 
@@ -42,7 +42,7 @@
 				});
 				const marker = L.marker([latitude, longitude], { icon }).addTo(map);
 
-				marker.bindTooltip(`<div class="imap-tooltip-name">${place.name}</div>`, {
+				marker.bindTooltip(`${place.name}`, {
 					direction: 'top',
 					offset: [0, -8],
 					className: 'imap-tooltip'
@@ -63,7 +63,7 @@
 		}).addTo(map);
 
 		if (includeInn) {
-			innMarker.bindTooltip('<div class="imap-tooltip-name">Avaloch</div>', {
+			innMarker.bindTooltip('Avaloch', {
 				direction: 'top',
 				offset: [0, -10],
 				className: 'imap-tooltip'
@@ -113,5 +113,10 @@
 		font-size: 16px;
 		line-height: 1;
 		color: var(--gold);
+	}
+
+	:global(.imap-tooltip) {
+		font-family: var(--body-font);
+		font-size: 15px;
 	}
 </style>

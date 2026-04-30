@@ -5,8 +5,8 @@
 		distanceMiles,
 		bearingDeg,
 		bearingLabel
-	} from '$lib/places.js';
-	import Compass from '$lib/components/Compass.svelte';
+	} from './index.js';
+	import Compass from './Compass.svelte';
 
 	let { portableText, children } = $props();
 

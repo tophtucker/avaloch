@@ -1,10 +1,10 @@
 <script>
 	import { PortableText } from '@portabletext/svelte';
-	import PlaceReference from '$lib/components/PlaceReference.svelte';
 	import HR from '$lib/components/HR.svelte';
-	import PlaceMap from '$lib/components/PlaceMap.svelte';
-	import InteractivePlaceMap from '$lib/components/InteractivePlaceMap.svelte';
-	import { getPlacesFromItinerary, getPlaceUrl, groupPlaces } from '$lib/places.js';
+	import PlaceReference from '$lib/places/PlaceReference.svelte';
+	import PlaceMap from '$lib/places/PlaceMap.svelte';
+	import InteractivePlaceMap from '$lib/places/InteractivePlaceMap.svelte';
+	import { getPlacesFromItinerary, getPlaceUrl, groupPlaces } from '$lib/places/index.js';
 
 	let { data } = $props();
 	let { itineraries, places } = data;
@@ -45,7 +45,7 @@
 		{/each}
 	</div>
 
-	<h3>Other pairings</h3>
+	<h3>Other ideas</h3>
 
 	<div class="others">
 		{#each itineraries
