@@ -65,6 +65,16 @@
 			</p>
 		</div>
 	</div>
+	<HR />
+	<div>
+		<h2>Contact us</h2>
+		<p>
+			You can email <a href="mailto:frontdesk@avalochinn.com">frontdesk@avalochinn.com</a>, or call
+			or text us at <a href="tel:1.413.637.1910" target="_blank">(413) 637-1910</a>. That’s a real
+			phone number that goes to one of us actually here at the inn!
+		</p>
+		<p>For private event inquiries, <a href="/weddings-events">click here</a>.</p>
+	</div>
 
 	<!-- <HR />
 	<div class="bios">

@@ -9,6 +9,22 @@
 	<dl>
 		<dt>
 			<a
+				href="https://www.berkshireeagle.com/business/lenox-apple-tree-inn-renovation-avaloch-name/article_d0492cec-e42f-4a5d-a905-2e4cd686c982.html"
+				>Recapturing the ‘magic’: Amid renovation, Apple Tree Inn reverts back to original name</a
+			>
+		</dt>
+		<dd>
+			<em>The Berkshire Eagle</em>, Clarence Fanto, April 23, 2026
+			<blockquote>
+				“I just love that name and I’m so into the history of this property,” she said. “It just
+				felt magical and mystical, it really resonated with me.” … Collery will open a
+				counter-service cafe for the public for breakfast and lunch in the newly built addition to
+				the inn. It’s adjacent to a room that can be sectioned off for private events and to the
+				inn’s new front office.
+			</blockquote>
+		</dd>
+		<dt>
+			<a
 				href="https://www.berkshireeagle.com/news/central_berkshires/two-lenox-businesses-win-zoning-board-approvals-for-expansion-and-renovation/article_169fc51c-de7b-47fb-ab79-87eed2f3d8ba.html"
 				>Antimony Brewery and Apple Tree Inn in Lenox cleared for expansion and renovation plans,
 				respectively</a
@@ -137,7 +153,7 @@
 	</p>
 	<ul>
 		<li>Email <a href="mailto:frontdesk@avalochinn.com">frontdesk@avalochinn.com</a></li>
-		<li>Call <a href="tel:1.413.637.1910" target="_blank">(413) 637-1910</a></li>
+		<li>Call or text <a href="tel:1.413.637.1910" target="_blank">(413) 637-1910</a></li>
 	</ul>
 </div>
 
