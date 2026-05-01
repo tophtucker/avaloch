@@ -67,7 +67,7 @@
 	</div>
 	<HR />
 	<div>
-		<h2>Contact us</h2>
+		<h2 id="contact-us">Contact us</h2>
 		<p>
 			You can email <a href="mailto:frontdesk@avalochinn.com">frontdesk@avalochinn.com</a>, or call
 			or text us at <a href="tel:1.413.637.1910" target="_blank">(413) 637-1910</a>. That’s a real
