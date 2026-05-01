@@ -6,7 +6,7 @@
 <div class="inner">
 	<h1>Policies</h1>
 
-	<h3>IMPORTANT NOTICE: ACTIVE CONSTRUCTION SUMMER 2026</h3>
+	<h3 id="construction-notice">IMPORTANT NOTICE: ACTIVE CONSTRUCTION SUMMER 2026</h3>
 	<p>
 		Active construction is underway on the property during the current season. Work is scheduled
 		during daytime hours and every effort is made to minimize disruption to guests. By completing
@@ -14,7 +14,7 @@
 		basis of construction activity that has been disclosed at the time of booking.
 	</p>
 
-	<h3>RESERVATIONS & PAYMENT</h3>
+	<h3 id="reservations-and-payment">RESERVATIONS & PAYMENT</h3>
 	<p>
 		Avaloch Inn accepts Visa, American Express, MasterCard, and Discover. We do not accept cash or
 		check payments. A valid credit card is required at the time of booking, along with a valid email
@@ -26,7 +26,7 @@
 		business hours for released funds to be reflected in your account.
 	</p>
 
-	<h3>CANCELLATIONS & MODIFICATIONS</h3>
+	<h3 id="cancellations-and-modifications">CANCELLATIONS & MODIFICATIONS</h3>
 	<p>
 		A cancellation policy will be specified at the time of booking and may vary by rate plan or
 		season. The policy confirmed at booking governs your reservation. Should you need to modify your
@@ -34,7 +34,7 @@
 		your rate may change. Avaloch Inn cannot guarantee availability for extended stays.
 	</p>
 
-	<h3>CHECK-IN & CHECK-OUT</h3>
+	<h3 id="check-in-and-check-out">CHECK-IN & CHECK-OUT</h3>
 	<p>
 		Check-in time is 3:00 p.m. Check-out time is 11:00 a.m. Early check-in and late check-out may be
 		available upon request and are subject to availability. A late checkout until 1:00 p.m. is
@@ -42,20 +42,20 @@
 		reservation are required at check-in.
 	</p>
 
-	<h3>AGE REQUIREMENT</h3>
+	<h3 id="age-requirement">AGE REQUIREMENT</h3>
 	<p>
 		Guests must be 21 years of age or older to make a reservation and to check in. Valid photo
 		identification will be required at check-in to confirm age.
 	</p>
 
-	<h3>ROOM ASSIGNMENTS & PREFERENCES</h3>
+	<h3 id="room-assignments-and-preferences">ROOM ASSIGNMENTS & PREFERENCES</h3>
 	<p>
 		Avaloch Inn will make every effort to honor room type and bed type preferences based on
 		availability at the time of arrival. All room and bed type preferences are requests only and
 		cannot be guaranteed.
 	</p>
 
-	<h3>OCCUPANCY</h3>
+	<h3 id="occupancy">OCCUPANCY</h3>
 	<p>
 		Only registered guests are permitted to occupy guest rooms. Any unregistered guest found in a
 		guest room after 11:00 p.m. will be charged $150.00 per person to the credit card on file.
@@ -65,20 +65,20 @@
 		vacate the property without refund.
 	</p>
 
-	<h3>SMOKE-FREE PROPERTY</h3>
+	<h3 id="smoke-free-property">SMOKE-FREE PROPERTY</h3>
 	<p>
 		Avaloch Inn is a 100% smoke-free property. Smoking of any kind is strictly prohibited in all
 		guest rooms, on balconies, and in all interior common areas. A minimum cleaning fee of $250.00
 		will be charged for violations.
 	</p>
 
-	<h3>PET POLICY</h3>
+	<h3 id="pet-policy">PET POLICY</h3>
 	<p>
 		Pets are not permitted in guest rooms. Evidence of a pet in a guest room will result in an
 		additional cleaning fee of $250.00 charged to the credit card on file.
 	</p>
 
-	<h3>DAMAGES, MISSING ITEMS & ROOM CONDITION</h3>
+	<h3 id="damages-missing-items-and-room-condition">DAMAGES, MISSING ITEMS & ROOM CONDITION</h3>
 	<p>
 		Guests are responsible for all charges posted to their room and for any damages (including
 		missing items) caused by themselves or their guests during the stay. All damages or breakages
@@ -91,20 +91,20 @@
 		accounted for at checkout. Missing items will be charged at $10.00 per unit.
 	</p>
 
-	<h3>LOST & STOLEN ITEMS</h3>
+	<h3 id="lost-and-stolen-items">LOST & STOLEN ITEMS</h3>
 	<p>
 		Avaloch Inn is not responsible for any lost or stolen items. Guests are encouraged to report any
 		concerns to the front desk promptly.
 	</p>
 
-	<h3>QUIET HOURS</h3>
+	<h3 id="quiet-hours">QUIET HOURS</h3>
 	<p>
 		Quiet hours are observed from 10:00 p.m. to 8:00 a.m. Out of respect for fellow guests, please
 		keep noise to a minimum during these hours. Guests who repeatedly disturb others may be asked to
 		vacate the property.
 	</p>
 
-	<h3>PRIVACY & DATA SECURITY</h3>
+	<h3 id="privacy-and-data-security">PRIVACY & DATA SECURITY</h3>
 	<p>
 		Avaloch Inn does not sell or share guest personal information, including phone numbers and SMS
 		message content. No mobile information will be shared with third parties or affiliates for
@@ -115,7 +115,7 @@
 		>.
 	</p>
 
-	<h3>SMS MESSAGING</h3>
+	<h3 id="sms-messaging">SMS MESSAGING</h3>
 	<p>
 		Avaloch Inn uses SMS text messaging to communicate with guests via our main phone line, (413)
 		637-1910. You can text us at that number to ask about reservations, arrival times, hotel
@@ -129,7 +129,7 @@
 		third parties or affiliates for any purpose, including marketing or promotional purposes.
 	</p>
 
-	<h3>GENERAL</h3>
+	<h3 id="general">GENERAL</h3>
 	<p>
 		Avaloch Inn reserves the right to modify these terms at any time. Room rates and availability
 		are subject to change. Avaloch Inn is not liable for circumstances beyond its reasonable
