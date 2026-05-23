@@ -1,8 +1,14 @@
 <script>
-	// This form submits feedback to Formspree.
+	// This form submits feedback to a Google Form via a hidden iframe target,
+	// which lets us keep our custom thank-you UI instead of redirecting to
+	// Google's confirmation page.
 	// If the overall rating is 5 stars, we prompt the guest to review us on Google.
 
-	const FORMSPREE_ID = 'meendeko';
+	// TODO(christian): hidden-iframe POST can't detect Google-side failure
+	// (cross-origin). If silent-failure reports come in, add a timeout fallback.
+
+	const GOOGLE_FORM_ACTION =
+		'https://docs.google.com/forms/d/e/1FAIpQLScGwX7SdZ7CHQllEwoBz_ChhyIK6_InL3CfNqJv1CXCY1zJag/formResponse';
 
 	const DIMENSIONS = [
 		{ key: 'staff', label: 'Staff', sub: 'How was the team?' },
@@ -23,58 +29,35 @@
 
 	let comments = $state('');
 	let email = $state('');
-	let errorMsg = $state('');
 	let submitting = $state(false);
+
+	// Plain let (no $state) — only read inside handleIframeLoad, which fires
+	// after handleSubmit assigns it, so reactivity isn't needed. The flag
+	// gates out the iframe's initial empty about:blank load.
+	let hasSubmitted = false;
 
 	function starFill(key, n) {
 		return (hovers[key] || ratings[key]) >= n;
 	}
 
-	async function handleSubmit(e) {
-		e.preventDefault();
-		errorMsg = '';
-
+	function handleSubmit(e) {
 		if (!ratings.overall) {
-			errorMsg = 'Please give an overall rating before submitting.';
+			e.preventDefault();
 			return;
 		}
-
 		submitting = true;
+		hasSubmitted = true;
+	}
 
-		const formData = new FormData();
-		formData.append('rating_overall', String(ratings.overall));
-		formData.append('rating_staff', String(ratings.staff));
-		formData.append('rating_cleanliness', String(ratings.cleanliness));
-		formData.append('rating_value', String(ratings.value));
-		formData.append('rating_room', String(ratings.room));
-		formData.append('comments', comments);
-		if (email) formData.append('email', email);
-
-		try {
-			const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-				method: 'POST',
-				headers: { Accept: 'application/json' },
-				body: formData
-			});
-			if (res.ok) {
-				routeAfterSubmit();
-			} else {
-				handleError();
-			}
-		} catch {
-			handleError();
-		} finally {
-			submitting = false;
-		}
+	function handleIframeLoad() {
+		if (!hasSubmitted) return;
+		routeAfterSubmit();
 	}
 
 	function routeAfterSubmit() {
 		screen = 'thanks';
+		submitting = false;
 		window.scrollTo({ top: 0 });
-	}
-
-	function handleError() {
-		errorMsg = 'Sorry, something went wrong. Please email frontdesk@avalochinn.com.';
 	}
 </script>
 
@@ -82,6 +65,13 @@
 	<title>How was your stay? • Avaloch Inn</title>
 	<meta name="robots" content="noindex, nofollow" />
 </svelte:head>
+
+<iframe
+	name="hidden_iframe"
+	title="form submission target"
+	style="display:none"
+	onload={handleIframeLoad}
+></iframe>
 
 <div class="inner">
 	<!-- ===== SCREEN: FORM ===== -->
@@ -106,7 +96,18 @@
 
 		<hr />
 
-		<form onsubmit={handleSubmit}>
+		<form
+			onsubmit={handleSubmit}
+			action={GOOGLE_FORM_ACTION}
+			method="POST"
+			target="hidden_iframe"
+		>
+			<input type="hidden" name="entry.1298330717" value={ratings.overall} />
+			<input type="hidden" name="entry.1318925030" value={ratings.staff} />
+			<input type="hidden" name="entry.1102046164" value={ratings.room} />
+			<input type="hidden" name="entry.691677599" value={ratings.cleanliness} />
+			<input type="hidden" name="entry.312837396" value={ratings.value} />
+
 			<div class="ratings">
 				{#each DIMENSIONS as dim}
 					<div class="rating-row">
@@ -129,10 +130,7 @@
 									aria-label="{n} star{n > 1 ? 's' : ''}"
 									aria-pressed={ratings[dim.key] === n}
 									onmouseenter={() => (hovers[dim.key] = n)}
-									onclick={() => {
-										ratings[dim.key] = n;
-										errorMsg = '';
-									}}>★</button
+									onclick={() => (ratings[dim.key] = n)}>★</button
 								>
 							{/each}
 						</div>
@@ -141,13 +139,13 @@
 			</div>
 
 			<label for="comments">Comments</label>
-			<textarea id="comments" name="comments" bind:value={comments}></textarea>
+			<textarea id="comments" name="entry.307709882" bind:value={comments}></textarea>
 
 			<label for="email">Your email (if you want a reply)</label>
 			<input
 				type="email"
 				id="email"
-				name="email"
+				name="entry.22457837"
 				placeholder="you@example.com"
 				bind:value={email}
 			/>
@@ -155,9 +153,6 @@
 			<button type="submit" disabled={submitting}>
 				{submitting ? 'Sending…' : 'Send'}
 			</button>
-			{#if errorMsg}
-				<p class="error">{errorMsg}</p>
-			{/if}
 		</form>
 	{/if}
 
@@ -253,11 +248,6 @@
 
 	button[type='submit'] {
 		margin-top: 1rem;
-	}
-
-	.error {
-		color: var(--red);
-		text-indent: 0;
 	}
 
 	@media (max-width: 480px) {
