@@ -136,8 +136,8 @@ a.cta {
 }
 
 a.cta:hover:not(.disabled),
-button:hover:not(.disabled),
-input[type='submit']:hover:not(.disabled) {
+button:hover:not([disabled]),
+input[type='submit']:hover:not([disabled]) {
 	background: var(--black);
 	color: white;
 	border-style: outset;
@@ -161,6 +161,11 @@ input[type='submit'] {
 	padding: 3px;
 	background-color: #fff;
 	border-radius: 0;
+}
+
+button[disabled] {
+	color: var(--gray);
+	cursor: not-allowed;
 }
 
 button.mini {
