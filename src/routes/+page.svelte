@@ -32,11 +32,9 @@
 <Rule />
 
 <div class="banner">
-	The Apple Tree Inn is now Avaloch. Our redecorated Lodge guest rooms and pool are now open. Our
-	Main House guest rooms and Ostrich Room tavern are under renovation and closed for summer 2026. <a
-		href="/about/renovations"
-		data-sveltekit-reload>Learn more →</a
-	>
+	The Apple Tree Inn is now Avaloch. Our redecorated Lodge guest rooms and pool are now open. Summer
+	weekend pop-up bar service begins 6/27. Our Main House and Ostrich Room tavern remain closed for
+	renovations. <a href="/about/renovations" data-sveltekit-reload>Learn more →</a>
 </div>
 
 <!--
