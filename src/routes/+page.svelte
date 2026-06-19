@@ -2,6 +2,7 @@
 	import { setContext } from 'svelte';
 	import Map from '$lib/components/Map.svelte';
 	import NewsletterSubscribe from '$lib/components/NewsletterSubscribe.svelte';
+	import WeekHoursMulti from '$lib/components/WeekHoursMulti.svelte';
 	import AvalochLodge from '$lib/icons/AvalochLodge.svelte';
 	import PentathingOrnate from '$lib/icons/PentathingOrnate.svelte';
 	import Asterisk from '$lib/icons/Asterisk.svelte';
@@ -15,7 +16,8 @@
 	setContext('lightbox', lightbox);
 
 	let { data } = $props();
-	let { mainGallery } = data;
+	let { mainGallery, summerPopupBar, pool } = data;
+	console.log(data);
 </script>
 
 <svelte:head>
@@ -71,8 +73,8 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 <section class="first">
 	<p>is the only lodging within walking distance to Tanglewood<sup>(9 min.)</sup>.</p>
 	<p>
-		Perched on a big hill overlooking the Stockbridge Bowl, it has a view, a pool, and a coffee
-		machine.
+		Perched on a big hill overlooking the Stockbridge Bowl, it has a view, a pool, and a weekend
+		pop-up bar.
 	</p>
 
 	<div style="display: flex; justify-content: flex-start; align-items: center; gap: 2rem;">
@@ -84,6 +86,29 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 <Rule />
 
 <Gallery images={mainGallery} />
+
+<Rule />
+
+<section class="flex" style="align-items: start;">
+	<div style="font-size: smaller; flex-shrink: 0;">
+		<WeekHoursMulti
+			calendars={[
+				{ title: 'Pool', calendar: pool.calendar },
+				{ title: 'Pop-up bar', calendar: summerPopupBar.calendar }
+			]}
+		/>
+	</div>
+	<div>
+		<p style="margin-top: 0;">
+			<span class="inalign">Pool passes</span> are available for individuals and family, for one day
+			or the whole season. Hotel guests swim for free.
+		</p>
+		<p>
+			The <span class="inalign">pop-up summer bar</span> (near the pool) offers beer, wine, and cocktails,
+			and is accompanied by a rotation of food trucks.
+		</p>
+	</div>
+</section>
 
 <Rule />
 
@@ -120,7 +145,7 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 	<div>
 		<div class="notice">Coming soon</div>
 		<p>
-			The <span class="inalign">Avaloch Inn</span> and <span class="inalign">Café</span> and
+			The <span class="inalign">Main House</span> and <span class="inalign">Café</span> and
 			<span class="inalign">Ostrich Room</span> are currently closed for renovations. Subscribe to our
 			newsletter for updates.
 		</p>

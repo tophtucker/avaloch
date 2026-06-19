@@ -1,14 +1,31 @@
-import { sanity, parseGallery } from '$lib/sanity.js';
+import { sanity, parseGallery, parseRestaurant } from '$lib/sanity.js';
 
-const QUERY = `*[_type == "gallery" && name == "Main"][0] {
-  _id,
-  name,
-  images[] {
-    image,
-    caption
+const QUERY = `{
+  "mainGallery": *[_type == "gallery" && name == "Main"][0] {
+    _id,
+    name,
+    images[] {
+      image,
+      caption
+    }
+  },
+  "summerPopupBar": *[_type == "restaurant" && name == "Summer Pop-up Bar"][0] {
+    hours,
+    hourOverrides,
+    "menus": menus[]{ name, "url": asset->url }
+  },
+  "pool": *[_type == "restaurant" && name == "Pool"][0] {
+    hours,
+    hourOverrides,
+    "menus": menus[]{ name, "url": asset->url }
   }
 }`;
 
 export async function load() {
-	return { mainGallery: parseGallery(await sanity.fetch(QUERY)).images.slice(0, 9) };
+	const { mainGallery, summerPopupBar, pool } = await sanity.fetch(QUERY);
+	return {
+		mainGallery: parseGallery(mainGallery).images.slice(0, 9),
+		summerPopupBar: parseRestaurant(summerPopupBar),
+		pool: parseRestaurant(pool)
+	};
 }
