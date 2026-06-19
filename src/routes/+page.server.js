@@ -12,11 +12,15 @@ const QUERY = `{
   "summerPopupBar": *[_type == "restaurant" && name == "Summer Pop-up Bar"][0] {
     hours,
     hourOverrides,
+    startDate,
+    endDate,
     "menus": menus[]{ name, "url": asset->url }
   },
   "pool": *[_type == "restaurant" && name == "Pool"][0] {
     hours,
     hourOverrides,
+    startDate,
+    endDate,
     "menus": menus[]{ name, "url": asset->url }
   }
 }`;

@@ -89,22 +89,32 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 
 <Rule />
 
-<section class="flex" style="align-items: start;">
+<section class="flex">
 	<div style="font-size: smaller; flex-shrink: 0;">
 		<WeekHoursMulti
 			calendars={[
-				{ title: 'Pool', calendar: pool.calendar },
-				{ title: 'Pop-up bar', calendar: summerPopupBar.calendar }
+				{
+					title: 'Pool',
+					calendar: pool.calendar,
+					startDate: pool.startDate,
+					endDate: pool.endDate
+				},
+				{
+					title: 'Bar',
+					calendar: summerPopupBar.calendar,
+					startDate: summerPopupBar.startDate,
+					endDate: summerPopupBar.endDate
+				}
 			]}
 		/>
 	</div>
 	<div>
 		<p style="margin-top: 0;">
 			<span class="inalign">Pool passes</span> are available for individuals and family, for one day
-			or the whole season. Hotel guests swim for free.
+			or the whole season. Call (413) 637-1910 to book. Hotel guests swim for free.
 		</p>
-		<p>
-			The <span class="inalign">pop-up summer bar</span> (near the pool) offers beer, wine, and cocktails,
+		<p style="margin-bottom: 0;">
+			The <span class="inalign">pop-up summer bar</span> (opening 6/27) offers beer, wine, and cocktails,
 			and is accompanied by a rotation of food trucks.
 		</p>
 	</div>
@@ -145,7 +155,7 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 	<div>
 		<div class="notice">Coming soon</div>
 		<p>
-			The <span class="inalign">Main House</span> and <span class="inalign">Café</span> and
+			The <span class="inalign">Avaloch Inn</span> and <span class="inalign">Café</span> and
 			<span class="inalign">Ostrich Room</span> are currently closed for renovations. Subscribe to our
 			newsletter for updates.
 		</p>

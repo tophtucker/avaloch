@@ -58,7 +58,16 @@ function parseDayHours(hours) {
 	return [hours.open, hours.close].map((time) => Temporal.PlainTime.from(time));
 }
 
-export function parseRestaurant({ hours, hourOverrides, menus }) {
+function isInBounds(date, startDate, endDate) {
+	return (
+		(!startDate || Temporal.PlainDate.compare(date, startDate) >= 0) &&
+		(!endDate || Temporal.PlainDate.compare(date, endDate) <= 0)
+	);
+}
+
+export function parseRestaurant({ hours, hourOverrides, startDate, endDate, menus }) {
+	startDate = startDate ? Temporal.PlainDate.from(startDate) : null;
+	endDate = endDate ? Temporal.PlainDate.from(endDate) : null;
 	const normalHours = daysOfWeek.map((day, i) => ({
 		day,
 		i: i + 1,
@@ -76,9 +85,9 @@ export function parseRestaurant({ hours, hourOverrides, menus }) {
 		special = special ? parseDayHours(special) : null;
 		calendar.push({
 			date, // PlainDate
-			hours: (special ?? normal).map((time) =>
-				date.toPlainDateTime(time).toZonedDateTime(TIME_ZONE)
-			), // ZonedDateTime
+			hours: isInBounds(date, startDate, endDate)
+				? (special ?? normal).map((time) => date.toPlainDateTime(time).toZonedDateTime(TIME_ZONE))
+				: [], // ZonedDateTime
 			normalHours: normal, // PlainTime
 			specialHours: special // PlainTime
 		});
@@ -87,5 +96,12 @@ export function parseRestaurant({ hours, hourOverrides, menus }) {
 	// E.g. “Wed. – Sat.”
 	const dayRange = formatDayRange(normalHours.filter((d) => d.hours.length).map((d) => d.i));
 
-	return { normalHours, calendar, menus, dayRange };
+	return {
+		normalHours,
+		calendar,
+		startDate,
+		endDate,
+		menus,
+		dayRange
+	};
 }

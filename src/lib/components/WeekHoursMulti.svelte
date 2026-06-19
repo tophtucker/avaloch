@@ -2,7 +2,7 @@
 	import { Temporal } from '@js-temporal/polyfill';
 	import { formatTimeRange, formatDay, formatDateShort } from '$lib/index.js';
 
-	// `calendars` is an array of { title, calendar } objects, one per column.
+	// `calendars` is an array of { title, calendar, startDate, endDate } objects, one per column.
 	let { calendars } = $props();
 
 	// Use the first calendar to define the days (rows) of the week.
@@ -35,7 +35,7 @@
 						>
 					</div>
 				</td>
-				{#each calendars as { calendar }}
+				{#each calendars as { calendar, startDate, endDate }}
 					{@const d = getDay(calendar, date)}
 					<td>
 						{#if d}
@@ -43,6 +43,10 @@
 									>{#if d.specialHours.length}{formatTimeRange(
 											d.specialHours
 										)}{:else}Closed{/if}</span
+								>{/if}{#if d.normalHours.length && startDate && Temporal.PlainDate.compare(date, startDate) < 0}<span
+									class="notice">Opens {formatDateShort(startDate)}</span
+								>{/if}{#if d.normalHours.length && endDate && Temporal.PlainDate.compare(date, endDate) > 0}<span
+									class="notice">Closed {formatDateShort(endDate)}</span
 								>{/if}
 						{/if}
 					</td>
@@ -98,7 +102,7 @@
 		font-size: smaller;
 		position: absolute;
 		padding: 3px 6px;
-		background: red;
+		background: var(--gold);
 		color: white;
 		top: 0.5em;
 		left: 1em;
