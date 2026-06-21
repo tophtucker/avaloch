@@ -8,7 +8,8 @@
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"format": "prettier --write .",
-		"lint": "prettier --check ."
+		"lint": "prettier --check .",
+		"enrich-places": "node scripts/enrich-places.js"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.0.0",

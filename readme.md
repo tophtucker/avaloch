@@ -20,3 +20,19 @@ The hotel uses:
 - Toast for restaurant booking
 - Stayntouch as property management system
 - MailChimp for email newsletters
+
+---
+
+This repository also contains a cron job running against Sanity to populate places’ coordinates, addresses, and websites from Google Maps links:
+
+```
+npm run enrich-places
+```
+
+```
+npm run enrich-places -- --dry-run
+```
+
+```
+npm run enrich-places -- --only-missing
+```
