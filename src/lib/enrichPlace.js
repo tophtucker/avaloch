@@ -17,6 +17,8 @@ const USER_AGENT = 'avaloch-place-enricher/1.0 (+https://avalochinn.com; place m
  * @property {string} [name]
  * @property {number} [latitude]
  * @property {number} [longitude]
+ * @property {boolean} [precise] True when coordinates came from the exact place
+ *   marker (`!3d/!4d`) rather than the looser map viewport center (`@`).
  */
 
 /**
@@ -77,21 +79,71 @@ export function parseExpandedUrl(expandedUrl) {
 	if (precise) {
 		result.latitude = parseFloat(precise[1]);
 		result.longitude = parseFloat(precise[2]);
+		result.precise = true;
 	} else {
 		const viewport = expandedUrl.match(/@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/);
 		if (viewport) {
 			result.latitude = parseFloat(viewport[1]);
 			result.longitude = parseFloat(viewport[2]);
+			result.precise = false;
 		}
 	}
 
 	return result;
 }
 
+const PLACE_FIELD_MASK = [
+	'places.id',
+	'places.displayName',
+	'places.formattedAddress',
+	'places.addressComponents',
+	'places.location',
+	'places.websiteUri'
+].join(',');
+
+/** Normalize a place name for loose comparison (case/punctuation-insensitive). */
+function normalizeName(value) {
+	return (value || '')
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, ' ')
+		.trim();
+}
+
 /**
- * Query the Google Places API (New) Text Search endpoint, biased to the
- * coordinates parsed from the maps URL, and map the top result onto our schema.
- * A single request returns location, address components and website.
+ * POST to a Places API (New) search endpoint and return the `places` array.
+ * @param {string} endpoint e.g. 'places:searchNearby'
+ * @param {Record<string, unknown>} body
+ * @param {string} apiKey
+ */
+async function placesSearch(endpoint, body, apiKey) {
+	const res = await fetch(`https://places.googleapis.com/v1/${endpoint}`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'X-Goog-Api-Key': apiKey,
+			'X-Goog-FieldMask': PLACE_FIELD_MASK
+		},
+		body: JSON.stringify(body)
+	});
+	if (!res.ok) {
+		const text = await res.text().catch(() => '');
+		throw new Error(`Places API error ${res.status}: ${text}`);
+	}
+	const json = await res.json();
+	return json.places ?? [];
+}
+
+/**
+ * Look up a place via the Google Places API (New) and map it onto our schema.
+ *
+ * The Maps link gives us the place's *exact* coordinates, which is a far more
+ * reliable key than its name. So when we have a pin we use Nearby Search with a
+ * hard circular `locationRestriction` around it: results can only come from
+ * inside that circle, making a wrong same-named place in another town/state
+ * structurally impossible. Among the businesses at that spot we prefer the one
+ * whose name matches the link, falling back to the closest (Nearby Search is
+ * sorted by distance). Only when there's no pin do we fall back to a plain
+ * name-based Text Search.
  *
  * @param {ParsedGmaps} parsed
  * @param {string} apiKey
@@ -102,46 +154,52 @@ export async function fetchGooglePlace(parsed, apiKey) {
 		throw new Error('Could not determine the place name from the Google Maps link');
 	}
 
-	/** @type {Record<string, unknown>} */
-	const body = {
-		textQuery: parsed.name,
-		maxResultCount: 1
-	};
-	if (parsed.latitude != null && parsed.longitude != null) {
-		body.locationBias = {
-			circle: {
-				center: { latitude: parsed.latitude, longitude: parsed.longitude },
-				radius: 200
-			}
-		};
+	const hasPin = parsed.latitude != null && parsed.longitude != null;
+	let place;
+
+	if (hasPin) {
+		const center = { latitude: parsed.latitude, longitude: parsed.longitude };
+		// Start tight (the storefront), widen once if nothing is returned. A
+		// precise pin sits right on the place; a viewport center can be off a bit.
+		const radii = parsed.precise ? [75, 250] : [250, 1000];
+
+		let candidates = [];
+		for (const radius of radii) {
+			candidates = await placesSearch(
+				'places:searchNearby',
+				{
+					locationRestriction: { circle: { center, radius } },
+					maxResultCount: 20,
+					rankPreference: 'DISTANCE'
+				},
+				apiKey
+			);
+			if (candidates.length) break;
+		}
+
+		if (candidates.length) {
+			const target = normalizeName(parsed.name);
+			// Candidates are already distance-sorted; prefer a name match, else nearest.
+			place =
+				candidates.find((c) => {
+					const name = normalizeName(c.displayName?.text);
+					return name && (name === target || name.includes(target) || target.includes(name));
+				}) ?? candidates[0];
+		}
 	}
 
-	const res = await fetch('https://places.googleapis.com/v1/places:searchText', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'X-Goog-Api-Key': apiKey,
-			'X-Goog-FieldMask': [
-				'places.id',
-				'places.displayName',
-				'places.formattedAddress',
-				'places.addressComponents',
-				'places.location',
-				'places.websiteUri'
-			].join(',')
-		},
-		body: JSON.stringify(body)
-	});
-
-	if (!res.ok) {
-		const text = await res.text().catch(() => '');
-		throw new Error(`Places API error ${res.status}: ${text}`);
-	}
-
-	const json = await res.json();
-	const place = json.places?.[0];
+	// Fallback: no pin, or Nearby Search found nothing at the coordinates.
 	if (!place) {
-		throw new Error(`No Google Place matched "${parsed.name}"`);
+		const candidates = await placesSearch(
+			'places:searchText',
+			{ textQuery: parsed.name, pageSize: 1 },
+			apiKey
+		);
+		place = candidates[0];
+	}
+
+	if (!place) {
+		throw new Error(`No Google Place found for "${parsed.name}"`);
 	}
 
 	const components = place.addressComponents ?? [];
@@ -179,16 +237,10 @@ function definedOnly(obj) {
 	return Object.fromEntries(Object.entries(obj).filter(([, value]) => value !== undefined));
 }
 
-/**
- * @param {Record<string, unknown>} a
- * @param {Record<string, unknown>} b
- */
-function shallowEqual(a, b) {
-	const keys = new Set([...Object.keys(a), ...Object.keys(b)]);
-	for (const key of keys) {
-		if (a[key] !== b[key]) return false;
-	}
-	return true;
+/** Render a value for audit logs, distinguishing "no value" from a real one. */
+function formatValue(value) {
+	if (value === undefined || value === null || value === '') return '(empty)';
+	return String(value);
 }
 
 /** @param {number} ms */
@@ -267,19 +319,39 @@ export async function enrichPlaces(options) {
 				...definedOnly({ latitude: data.latitude, longitude: data.longitude })
 			};
 
-			/** @type {Record<string, unknown>} */
-			const patch = {};
-			if (!shallowEqual(place.address ?? {}, nextAddress)) {
-				patch.address = nextAddress;
+			// Collect changed leaf fields so we can log a before/after audit trail.
+			/** @type {Array<{path: string, before: unknown, after: unknown}>} */
+			const changes = [];
+			for (const key of ['street', 'city', 'state', 'zip']) {
+				if ((place.address?.[key] ?? undefined) !== (nextAddress[key] ?? undefined)) {
+					changes.push({
+						path: `address.${key}`,
+						before: place.address?.[key],
+						after: nextAddress[key]
+					});
+				}
 			}
-			if (!shallowEqual(place.coordinates ?? {}, nextCoordinates)) {
-				patch.coordinates = nextCoordinates;
+			for (const key of ['latitude', 'longitude']) {
+				if ((place.coordinates?.[key] ?? undefined) !== (nextCoordinates[key] ?? undefined)) {
+					changes.push({
+						path: `coordinates.${key}`,
+						before: place.coordinates?.[key],
+						after: nextCoordinates[key]
+					});
+				}
 			}
 			if (data.website && data.website !== place.website) {
-				patch.website = data.website;
+				changes.push({ path: 'website', before: place.website, after: data.website });
 			}
 
-			if (Object.keys(patch).length === 0) {
+			/** @type {Record<string, unknown>} */
+			const patch = {};
+			if (changes.some((c) => c.path.startsWith('address.'))) patch.address = nextAddress;
+			if (changes.some((c) => c.path.startsWith('coordinates.')))
+				patch.coordinates = nextCoordinates;
+			if (changes.some((c) => c.path === 'website')) patch.website = data.website;
+
+			if (changes.length === 0) {
 				result.skipped += 1;
 				result.details.push({ id: place._id, name: place.name, status: 'skipped' });
 				log(`  = ${label}: already up to date`);
@@ -288,13 +360,17 @@ export async function enrichPlaces(options) {
 					await client.patch(place._id).set(patch).commit();
 				}
 				result.updated += 1;
+				const lines = changes.map(
+					(c) => `${c.path}: ${formatValue(c.before)} → ${formatValue(c.after)}`
+				);
 				result.details.push({
 					id: place._id,
 					name: place.name,
 					status: 'updated',
-					message: Object.keys(patch).join(', ')
+					message: lines.join('; ')
 				});
-				log(`  ${dryRun ? '~' : '+'} ${label}: ${Object.keys(patch).join(', ')}`);
+				log(`  ${dryRun ? '~' : '+'} ${label}`);
+				for (const line of lines) log(`      ${line}`);
 			}
 		} catch (error) {
 			const message = error instanceof Error ? error.message : String(error);
