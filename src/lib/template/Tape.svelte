@@ -1,8 +1,9 @@
 <div class="tape">
 	<div>
-		MAIN HOUSE UNDER RENOVATION • LODGE OPEN FOR SUMMER <span class="hide-mobile">
-			• MAIN HOUSE UNDER RENOVATION • LODGE OPEN FOR SUMMER • MAIN HOUSE UNDER RENOVATION • LODGE
-			OPEN FOR SUMMER • MAIN HOUSE UNDER RENOVATION • LODGE OPEN FOR SUMMER</span
+		MAIN HOUSE UNDER RENOVATION • LODGE, POOL, POP-UP OPEN FOR SUMMER <span class="hide-mobile">
+			• MAIN HOUSE UNDER RENOVATION • LODGE, POOL, POP-UP OPEN FOR SUMMER • MAIN HOUSE UNDER
+			RENOVATION • LODGE OPEN FOR SUMMER • MAIN HOUSE UNDER RENOVATION • LODGE, POOL, POP-UP OPEN
+			FOR SUMMER</span
 		>
 	</div>
 </div>
@@ -13,12 +14,11 @@
 		overflow: hidden;
 		background: var(--gold);
 		color: white;
-		border: 1px solid white;
 		padding: 0.25rem 0.5rem 0.2rem 0.5rem;
 		font-variation-settings: 'wght' 800;
 		text-align: center;
 		font-family: var(--hed-font);
-		font-size: larger;
+		font-size: 20px;
 		white-space: nowrap;
 	}
 
@@ -28,7 +28,7 @@
 
 	@media (max-width: 800px) {
 		.tape {
-			font-size: small;
+			font-size: 14px;
 			white-space: normal;
 			text-wrap: balance;
 		}

@@ -28,14 +28,31 @@ const QUERY = `{
     hours,
     hourOverrides,
     "menus": menus[]{ name, "url": asset->url }
+  },
+  "summerPopupBar": *[_type == "restaurant" && name == "Summer Pop-up Bar"][0] {
+    hours,
+    hourOverrides,
+    startDate,
+    endDate,
+    "menus": menus[]{ name, "url": asset->url }
+  },
+  "pool": *[_type == "restaurant" && name == "Pool"][0] {
+    hours,
+    hourOverrides,
+    startDate,
+    endDate,
+    "menus": menus[]{ name, "url": asset->url }
   }
 }`;
 
 export async function load() {
-	const { nextPerformance, bulletins, ostrichRoom } = await sanity.fetch(QUERY);
+	const { nextPerformance, bulletins, ostrichRoom, summerPopupBar, pool } =
+		await sanity.fetch(QUERY);
 	return {
 		nextPerformance: parsePerformance(nextPerformance),
 		bulletins: bulletins.map(parseBulletin),
-		ostrichRoom: parseRestaurant(ostrichRoom)
+		ostrichRoom: parseRestaurant(ostrichRoom),
+		summerPopupBar: parseRestaurant(summerPopupBar),
+		pool: parseRestaurant(pool)
 	};
 }

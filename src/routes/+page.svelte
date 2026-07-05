@@ -3,7 +3,8 @@
 	import Map from '$lib/components/Map.svelte';
 	import NewsletterSubscribe from '$lib/components/NewsletterSubscribe.svelte';
 	import WeekHoursMulti from '$lib/components/WeekHoursMulti.svelte';
-	import AvalochLodge from '$lib/icons/AvalochLodge.svelte';
+	import Avaloch from '$lib/icons/Avaloch.svelte';
+	import Tape from '$lib/template/Tape.svelte';
 	import PentathingOrnate from '$lib/icons/PentathingOrnate.svelte';
 	import Asterisk from '$lib/icons/Asterisk.svelte';
 	import Lightbox from '$lib/lightbox/Lightbox.svelte';
@@ -17,11 +18,10 @@
 
 	let { data } = $props();
 	let { mainGallery, summerPopupBar, pool } = data;
-	console.log(data);
 </script>
 
 <svelte:head>
-	<title>Avaloch Lodge • Lenox, Mass.</title>
+	<title>Avaloch • Lenox, Mass.</title>
 	<meta
 		name="description"
 		content="A historic hotel in Lenox, MA, with views of the Berkshires hills and 10-minute walks to Tanglewood or Kripalu. Formerly the Apple Tree Inn."
@@ -29,25 +29,26 @@
 	<link rel="canonical" href="https://avalochinn.com/" />
 </svelte:head>
 
-<Rule />
-
-<div class="banner">
-	The Apple Tree Inn is now Avaloch. Our redecorated Lodge guest rooms and pool are now open. Summer
-	weekend pop-up bar service begins 6/27. Our Main House and Ostrich Room tavern remain closed for
-	renovations. <a href="/about/renovations" data-sveltekit-reload>Learn more →</a>
-</div>
-
-<!--
-The Apple Tree Inn is now Avaloch.
-Our redecorated Lodge guest rooms and pool will be open starting May 15.
-Our Main House guest rooms and Ostrich Room tavern are under renovation and closed for summer 2026.
--->
+<Tape />
 
 <Rule />
 
 <header>
 	<div class="hero-img-wrap">
-		<img src="/heropics/pool1.jpg" alt="The pool at Avaloch" />
+		<video autoplay muted loop playsinline>
+			<source
+				media="(min-width: 1024px)"
+				src="https://cdn.avaloch.co/hero_1080p.webm"
+				type="video/webm"
+			/>
+			<source
+				media="(min-width: 1024px)"
+				src="https://cdn.avaloch.co/hero_1080p.mp4"
+				type="video/mp4"
+			/>
+			<source src="https://cdn.avaloch.co/hero_720p.webm" type="video/webm" />
+			<source src="https://cdn.avaloch.co/hero_720p.mp4" type="video/mp4" />
+		</video>
 		<svg class="noise-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
 			<filter id="noise-filter">
 				<feTurbulence
@@ -62,7 +63,7 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 		<div class="grain-overlay" aria-hidden="true"></div>
 	</div>
 	<div class="wordmark">
-		<AvalochLodge class="avaloch-lodge" />
+		<Avaloch class="avaloch-lodge" />
 	</div>
 </header>
 
@@ -71,8 +72,10 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 <section class="first">
 	<p>is the only lodging within walking distance to Tanglewood<sup>(9 min.)</sup>.</p>
 	<p>
-		Perched on a big hill overlooking the Stockbridge Bowl, it has a view, a pool, and a weekend
-		pop-up bar.
+		Perched on a big hill, it has guests rooms, a pool, a <a
+			href="/dining/pop-up-bar"
+			data-sveltekit-reload>pop-up bar</a
+		>, and great views.
 	</p>
 
 	<div style="display: flex; justify-content: flex-start; align-items: center; gap: 2rem;">
@@ -108,12 +111,13 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 	</div>
 	<div>
 		<p style="margin-top: 0;">
-			<span class="inalign">Pool passes</span> are available for individuals and family, for one day
-			or the whole season. Call (413) 637-1910 to book. Hotel guests swim for free.
+			<a href="/activities/pool" data-sveltekit-reload class="inalign">Pool passes</a> are available
+			for individuals and family, for one day or the whole season. Call (413) 637-1910 to book. Hotel
+			guests swim for free.
 		</p>
 		<p style="margin-bottom: 0;">
-			The <span class="inalign">pop-up summer bar</span> (opening 6/27) offers beer, wine, and cocktails,
-			and is accompanied by a rotation of food trucks.
+			The <a href="/dining/pop-up-bar" data-sveltekit-reload class="inalign">pop-up summer bar</a> (opening
+			6/27) offers beer, wine, and cocktails, and is accompanied by a rotation of food trucks.
 		</p>
 	</div>
 </section>
@@ -153,8 +157,9 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 	<div>
 		<div class="notice">Coming soon</div>
 		<p>
-			The <span class="inalign">Avaloch Inn</span> and <span class="inalign">Café</span> and
-			<span class="inalign">Ostrich Room</span> are currently closed for renovations. Subscribe to our
+			The <span class="inalign">Main House</span> and
+			<span class="inalign">Ostrich Room</span> are currently closed for
+			<a href="/about/renovations" data-sveltekit-reload>renovations</a>. Subscribe to our
 			newsletter for updates.
 		</p>
 		<div style="font-size: smaller;">
@@ -283,7 +288,7 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 	}
 
 	:global(.avaloch-lodge) {
-		height: 240px;
+		height: 180px;
 	}
 
 	.wordmark {
@@ -309,7 +314,7 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 		overflow: hidden;
 	}
 
-	.hero-img-wrap img {
+	.hero-img-wrap video {
 		display: block;
 		width: 100%;
 		height: 100%;
@@ -323,6 +328,8 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 		width: 100%;
 		height: 100%;
 		pointer-events: none;
+		opacity: 0.25;
+		/*mix-blend-mode: overlay;*/
 	}
 
 	.grain-overlay {
@@ -348,7 +355,7 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 			font-size: 1.5em;
 		}
 		:global(.avaloch-lodge) {
-			height: 180px;
+			height: 100px;
 		}
 		sup {
 			font-size: small;
@@ -365,7 +372,7 @@ Our Main House guest rooms and Ostrich Room tavern are under renovation and clos
 			font-size: 1.2em;
 		}
 		:global(.avaloch-lodge) {
-			height: 100px;
+			height: 60px;
 		}
 		:global(.pentathing) {
 			width: 80px;

@@ -3,7 +3,6 @@
 	import RenoNotice from '$lib/components/RenoNotice.svelte';
 	let { data } = $props();
 	let { amenities, nonAmenities } = data;
-	console.log(amenities);
 </script>
 
 <svelte:head>

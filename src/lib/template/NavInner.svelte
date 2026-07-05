@@ -41,7 +41,7 @@
 
 <nav>
 	<div class="section">
-		<a href="/" data-sveltekit-reload>Lodge</a>
+		<a href="/" data-sveltekit-reload>Home</a>
 	</div>
 	{#each mainNav as n}
 		{@render navSection(n)}

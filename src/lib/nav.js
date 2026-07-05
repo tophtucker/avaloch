@@ -2,20 +2,33 @@ export const BOOKING_URL = 'https://direct-book.com/properties/AvalochInndirect'
 export const RESERVATIONS_URL = '#'; // 'https://tables.toasttab.com/restaurants/701827ce-60b2-4de3-a117-eeef40adcbe1/findTime';
 
 export const nav = [
-	{ title: 'Renovations', slug: 'about/renovations' },
+	{ title: 'Pop-Up Bar', slug: 'dining/pop-up-bar' },
 	{ title: 'Gallery', slug: 'overview/gallery' },
-	{ title: 'Amenities', slug: 'activities/amenities' },
-	{ title: 'Tanglewood', slug: 'activities/tanglewood' },
-	{ title: 'The Berkshires', slug: 'activities/berkshires' },
 	{ title: 'Property map', slug: 'overview/map' },
-	{ title: 'About', slug: 'about/about-us' },
-	{ title: 'History', slug: 'about/history' },
-	{ title: 'Press', slug: 'about/press' },
-	{ title: 'Newsletter', slug: 'about/newsletter' },
-	{ title: 'Policies', slug: 'about/policies' },
 	{
 		slug: 'weddings-events',
 		title: 'Private events'
+	},
+	{
+		title: 'Activities',
+		slug: 'activities',
+		children: [
+			{ title: 'Amenities', slug: 'amenities' },
+			{ title: 'Tanglewood', slug: 'tanglewood' },
+			{ title: 'The Berkshires', slug: 'berkshires' },
+			{ title: 'Pool', slug: 'pool' }
+		]
+	},
+	{
+		title: 'About',
+		slug: 'about',
+		children: [
+			{ title: 'Renovations', slug: 'renovations' },
+			{ title: 'History', slug: 'history' },
+			{ title: 'Press', slug: 'press' },
+			{ title: 'Newsletter', slug: 'newsletter' },
+			{ title: 'Policies', slug: 'policies' }
+		]
 	}
 ];
 

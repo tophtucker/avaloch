@@ -14,9 +14,7 @@
 
 	const week = calendar
 		.slice(0, 7)
-		.map((d) => ({ ...d, performances: getPerformancesForDay(d.date) }));
-
-	console.log(week);
+		.map((d) => ({ ...d, performances: performances ? getPerformancesForDay(d.date) : null }));
 
 	const isToday = (day) => Temporal.Now.plainDateISO().equals(day);
 </script>
@@ -26,7 +24,7 @@
 		<tr>
 			<th style="border-top: none; border-left: none; background: none;"></th>
 			<th style="min-width: 7em;">Hours</th>
-			<th class="hide-mobile"><a href="/music">Live music</a></th>
+			{#if performances}<th class="hide-mobile"><a href="/music">Live music</a></th>{/if}
 		</tr>
 	</thead>
 	<tbody>
@@ -50,7 +48,9 @@
 						<div class="description show-mobile">{d.performances}</div>
 					{/if}</td
 				>
-				<td class="description hide-mobile">{d.performances}</td>
+				{#if performances}
+					<td class="description hide-mobile">{d.performances}</td>
+				{/if}
 			</tr>
 		{/each}
 	</tbody>
