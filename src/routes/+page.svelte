@@ -35,7 +35,7 @@
 
 <header>
 	<div class="hero-img-wrap">
-		<video autoplay muted loop playsinline>
+		<video autoplay muted loop playsinline poster="/heropics/poster.jpg">
 			<source
 				media="(min-width: 1024px)"
 				src="https://cdn.avaloch.co/hero_1080p.webm"
