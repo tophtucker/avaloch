@@ -4,8 +4,10 @@ import { createClient } from '@sanity/client';
 import { enrichPlaces } from '$lib/enrichPlace.js';
 
 // Give the function room to walk every place (shortlink + Places API per doc).
-// Read by @sveltejs/adapter-vercel on deploy.
-export const config = { maxDuration: 60 };
+// At ~81 places this reliably blew past 60s and Vercel killed it with a 504.
+// Read by @sveltejs/adapter-vercel on deploy (requires the Pro plan or above
+// to exceed 60s: https://vercel.com/docs/functions/configuring-functions/duration).
+export const config = { maxDuration: 300 };
 
 /**
  * Weekly cron endpoint that refreshes `place` coordinates/address/website from
