@@ -1,5 +1,6 @@
 <script>
 	import Nightpicker from '$lib/components/Nightpicker.svelte';
+	import BookingSearch from '$lib/components/BookingSearch.svelte';
 </script>
 
 <svelte:head>
@@ -16,4 +17,14 @@
 	</p>
 	<hr />
 	<Nightpicker />
+
+	<hr />
+
+	<h1>StayNtouch search (Variant B)</h1>
+	<p>
+		The same job, handed off to the StayNtouch booking engine instead of SiteMinder. Nothing here is
+		wired into the live “Book a room” CTA yet, and the IBE subdomain is still a placeholder — see
+		IBE_BASE_URL in <code>src/lib/config.ts</code>.
+	</p>
+	<BookingSearch />
 </div>
