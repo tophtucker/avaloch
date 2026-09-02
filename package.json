@@ -9,7 +9,9 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"format": "prettier --write .",
 		"lint": "prettier --check .",
-		"enrich-places": "node scripts/enrich-places.js"
+		"enrich-places": "node scripts/enrich-places.js",
+		"test": "vitest run",
+		"test:watch": "vitest"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.0.0",
@@ -20,7 +22,8 @@
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
 		"svelte": "^5.0.0",
-		"vite": "^6.3.5"
+		"vite": "^6.3.5",
+		"vitest": "^4.1.11"
 	},
 	"type": "module",
 	"dependencies": {
