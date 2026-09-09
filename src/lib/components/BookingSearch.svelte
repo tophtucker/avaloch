@@ -11,7 +11,8 @@
 <script>
 	import { Temporal } from '@js-temporal/polyfill';
 	import { TIME_ZONE } from '$lib/index.js';
-	import { IBE_BASE_URL, toIbeDate } from '$lib/config';
+	import { IBE_BASE_URL } from '$lib/config';
+	import { buildIbeSearchUrl } from '$lib/ibe';
 
 	const MAX_ADULTS = 4;
 
@@ -68,22 +69,21 @@
 	function validate() {
 		if (!checkin || !checkout) return 'Please choose both a check-in and a check-out date.';
 		if (!(checkout > checkin)) return 'Check-out has to be after check-in.';
-		if (!(adults >= 1)) return 'Please include at least one adult.';
+		if (!Number.isInteger(adults) || adults < 1) return 'Please include at least one adult.';
 		return '';
 	}
 
 	function searchUrl() {
-		const params = new URLSearchParams({
-			checkin: toIbeDate(checkin),
-			checkout: toIbeDate(checkout),
-			adults: String(adults),
-			kids: String(kids >= 0 ? kids : 0)
+		// The builder insists on whole numbers; an emptied children field reads
+		// back as NaN, which means nobody rather than an error.
+		return buildIbeSearchUrl({
+			baseUrl: IBE_BASE_URL,
+			checkin,
+			checkout,
+			adults,
+			kids: Number.isInteger(kids) && kids >= 0 ? kids : 0,
+			promotionCode: promoCode
 		});
-		// An empty promotionCode is worse than none at all — the IBE treats it as
-		// a code that doesn’t exist and shows no rates.
-		const code = promoCode.trim();
-		if (code) params.set('promotionCode', code);
-		return `${IBE_BASE_URL}/search-results?${params}`;
 	}
 
 	function handleSubmit() {

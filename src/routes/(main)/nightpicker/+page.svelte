@@ -23,8 +23,9 @@
 	<h1>StayNtouch search (Variant B)</h1>
 	<p>
 		The same job, handed off to the StayNtouch booking engine instead of SiteMinder. Nothing here is
-		wired into the live “Book a room” CTA yet, and the IBE subdomain is still a placeholder — see
-		IBE_BASE_URL in <code>src/lib/config.ts</code>.
+		wired into the live “Book a room” CTA yet. The property name defaults to <code>avaloch</code>
+		and is not yet confirmed with StayNtouch — override it with
+		<code>PUBLIC_IBE_BASE_URL</code>, see <code>src/lib/config.ts</code>.
 	</p>
 	<BookingSearch />
 </div>
