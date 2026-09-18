@@ -10,7 +10,8 @@
 			<h3>This page is under renovation</h3>
 			{@render children()}
 			<HR class="margin-0" />
-			<em>We don’t know when the Main House will reopen. The Lodge is open for summer.</em>
+			<!-- Seasonal copy. Restore pool/pop-up wording when they reopen, alongside showSeasonalSchedule in src/routes/+page.svelte. -->
+			<em>We don’t know when the Main House will reopen. The Lodge is open.</em>
 			<a class="cta" href="/about/renovations">Learn more</a>
 		</LilFrame>
 	</div>
