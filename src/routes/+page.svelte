@@ -18,9 +18,6 @@
 
 	let { data } = $props();
 	let { mainGallery, summerPopupBar, pool } = data;
-
-	// Set to true when pool/bar reopen. Also update the hardcoded 'opening 6/27' date in the bar blurb.
-	const showSeasonalSchedule = false;
 </script>
 
 <svelte:head>
@@ -75,10 +72,7 @@
 <section class="first">
 	<p>is the only lodging within walking distance to Tanglewood<sup>(9 min.)</sup>.</p>
 	<p>
-		Perched on a big hill, it has guests rooms, a pool, a <a
-			href="/dining/pop-up-bar"
-			data-sveltekit-reload>pop-up bar</a
-		>, and great views.
+		Perched on a big hill, it has guest rooms, a beautiful lawn, a fire pit, and great views.
 	</p>
 
 	<div style="display: flex; justify-content: flex-start; align-items: center; gap: 2rem;">
@@ -90,42 +84,6 @@
 <Rule />
 
 <Gallery images={mainGallery} />
-
-{#if showSeasonalSchedule}
-	<Rule />
-
-	<section class="flex">
-		<div style="font-size: smaller; flex-shrink: 0;">
-			<WeekHoursMulti
-				calendars={[
-					{
-						title: 'Pool',
-						calendar: pool.calendar,
-						startDate: pool.startDate,
-						endDate: pool.endDate
-					},
-					{
-						title: 'Bar',
-						calendar: summerPopupBar.calendar,
-						startDate: summerPopupBar.startDate,
-						endDate: summerPopupBar.endDate
-					}
-				]}
-			/>
-		</div>
-		<div>
-			<p style="margin-top: 0;">
-				<a href="/activities/pool" data-sveltekit-reload class="inalign">Pool passes</a> are available
-				for individuals and family, for one day or the whole season. Call (413) 637-1910 to book. Hotel
-				guests swim for free.
-			</p>
-			<p style="margin-bottom: 0;">
-				The <a href="/dining/pop-up-bar" data-sveltekit-reload class="inalign">pop-up summer bar</a>
-				(opening 6/27) offers beer, wine, and cocktails, and is accompanied by a rotation of food trucks.
-			</p>
-		</div>
-	</section>
-{/if}
 
 <Rule />
 
