@@ -25,8 +25,7 @@
 		</p>
 		<p>
 			We have thirteen unique <a href="/rooms">guest rooms</a> in the historic Main House (closed
-			for renovations), plus twenty-one more basic rooms in the seasonal Lodge (open for summer
-			2026).
+			for renovations), plus twenty-one more basic rooms in the seasonal Lodge (open seasonally).
 			<!-- The Main House has the front desk; the lobby; the porch; the quirky “round room”; and
 			our tavern,
 			<a href="/dining/ostrich-room">The Ostrich Room</a>, which is open to the public {data
@@ -172,7 +171,7 @@
 	<hr /> -->
 	<h2>When will renovations be done?</h2>
 	<p>
-		The Lodge will be open for the summer. For the Main House, we still really don’t know! We don’t
+		The Lodge is open. For the Main House, we still really don’t know! We don’t
 		want to over-promise, so we will let you know when we have confidence in our timeline. Subscribe
 		to the <a href="/about/newsletter">newsletter</a>, follow us on
 		<a href="https://instagram.com/avaloch.inn">Instagram</a>, and check the

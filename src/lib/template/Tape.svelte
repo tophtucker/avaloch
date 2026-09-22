@@ -1,9 +1,9 @@
+<!-- Seasonal copy. Restore pool/pop-up wording when they reopen, alongside showSeasonalSchedule in src/routes/+page.svelte. -->
 <div class="tape">
 	<div>
-		MAIN HOUSE UNDER RENOVATION • LODGE, POOL, POP-UP OPEN FOR SUMMER <span class="hide-mobile">
-			• MAIN HOUSE UNDER RENOVATION • LODGE, POOL, POP-UP OPEN FOR SUMMER • MAIN HOUSE UNDER
-			RENOVATION • LODGE OPEN FOR SUMMER • MAIN HOUSE UNDER RENOVATION • LODGE, POOL, POP-UP OPEN
-			FOR SUMMER</span
+		MAIN HOUSE UNDER RENOVATION • LODGE OPEN <span class="hide-mobile">
+			• MAIN HOUSE UNDER RENOVATION • LODGE OPEN • MAIN HOUSE UNDER RENOVATION • LODGE OPEN • MAIN
+			HOUSE UNDER RENOVATION • LODGE OPEN</span
 		>
 	</div>
 </div>

@@ -15,8 +15,8 @@
 </svelte:head>
 
 <RenoNotice
-	>There is no restaurant onsite during renovations. Guests staying at the Lodge during summer 2026
-	will be able to purchase breakfast boxes.</RenoNotice
+	>There is no restaurant onsite during renovations. Guests staying at the Lodge can purchase
+	breakfast boxes.</RenoNotice
 >
 
 <div class="inner blur">

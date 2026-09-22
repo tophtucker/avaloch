@@ -2,7 +2,6 @@ export const BOOKING_URL = 'https://direct-book.com/properties/AvalochInndirect'
 export const RESERVATIONS_URL = '#'; // 'https://tables.toasttab.com/restaurants/701827ce-60b2-4de3-a117-eeef40adcbe1/findTime';
 
 export const nav = [
-	{ title: 'Pop-Up Bar', slug: 'dining/pop-up-bar' },
 	{ title: 'Gallery', slug: 'overview/gallery' },
 	{ title: 'Property map', slug: 'overview/map' },
 	{
@@ -15,8 +14,7 @@ export const nav = [
 		children: [
 			{ title: 'Amenities', slug: 'amenities' },
 			{ title: 'Tanglewood', slug: 'tanglewood' },
-			{ title: 'The Berkshires', slug: 'berkshires' },
-			{ title: 'Pool', slug: 'pool' }
+			{ title: 'The Berkshires', slug: 'berkshires' }
 		]
 	},
 	{
