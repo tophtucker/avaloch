@@ -6,7 +6,7 @@
 <div class="inner">
 	<h1>Policies</h1>
 
-	<h3 id="construction-notice">IMPORTANT NOTICE: ACTIVE CONSTRUCTION SUMMER 2026</h3>
+	<h3 id="construction-notice">IMPORTANT NOTICE: ACTIVE CONSTRUCTION</h3>
 	<p>
 		Active construction is underway on the property during the current season. Work is scheduled
 		during daytime hours and every effort is made to minimize disruption to guests. By completing

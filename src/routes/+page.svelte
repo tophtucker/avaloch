@@ -17,7 +17,7 @@
 	setContext('lightbox', lightbox);
 
 	let { data } = $props();
-	let { mainGallery, summerPopupBar, pool } = data;
+	let { mainGallery } = data;
 </script>
 
 <svelte:head>
@@ -71,9 +71,7 @@
 
 <section class="first">
 	<p>is the only lodging within walking distance to Tanglewood<sup>(9 min.)</sup>.</p>
-	<p>
-		Perched on a big hill, it has guest rooms, a beautiful lawn, a fire pit, and great views.
-	</p>
+	<p>Perched on a big hill, it has guest rooms, a beautiful lawn, a fire pit, and great views.</p>
 
 	<div style="display: flex; justify-content: flex-start; align-items: center; gap: 2rem;">
 		<a class="cta" href={BOOKING_URL}>Book now</a>
