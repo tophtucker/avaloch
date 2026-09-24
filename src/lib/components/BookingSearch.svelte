@@ -238,8 +238,14 @@
 	button.check {
 		color: var(--green);
 		border-color: var(--green);
-		height: 2rem;
-		padding: 0 0.75rem;
+		/*
+			em, not rem. The homepage runs on display type (body 2em, then
+			section.first 2em again), so a root-relative height cannot hold text
+			that scales with the section, and the label gets clipped. The "Book
+			now" link this form replaced solved the same problem the same way.
+		*/
+		min-height: 2em;
+		padding: 0.2em 0.75em;
 		white-space: nowrap;
 	}
 
