@@ -177,6 +177,15 @@
 
 <style>
 	.booking-search {
+		/*
+			Root relative on purpose. This is a control panel, not prose, and it
+			has to keep a sane size wherever it is embedded. The homepage puts it
+			inside display type (body 2em, then section.first 2em again), which
+			would otherwise inherit down as 64px inputs. 1.125rem is the site's
+			own body size from static/styles.css.
+		*/
+		font-size: 1.125rem;
+
 		background: #ffffff;
 		border: 1px solid var(--green);
 		padding: 1rem;
