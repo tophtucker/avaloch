@@ -4,9 +4,8 @@
 	(their engine is a separate app, so SvelteKit’s client-side router has no
 	business trying to own it).
 
-	This lives alongside the existing SiteMinder booking links (BOOKING_URL in
-	$lib/nav.js) rather than replacing them — see the PR description for the
-	cut-over.
+	This is the only booking path on the site. The host it points at comes from
+	IBE_BASE_URL in $lib/config.ts, which reads PUBLIC_IBE_BASE_URL.
 -->
 <script>
 	import { Temporal } from '@js-temporal/polyfill';

@@ -8,7 +8,7 @@
 	import PentathingOrnate from '$lib/icons/PentathingOrnate.svelte';
 	import Asterisk from '$lib/icons/Asterisk.svelte';
 	import Lightbox from '$lib/lightbox/Lightbox.svelte';
-	import { BOOKING_URL } from '$lib/nav.js';
+	import BookingSearch from '$lib/components/BookingSearch.svelte';
 	import Gallery from './lodge/Gallery.svelte';
 	import NoMinimum from './lodge/NoMinimum.svelte';
 	import Rule from './lodge/Rule.svelte';
@@ -74,7 +74,7 @@
 	<p>Perched on a big hill, it has guest rooms, a beautiful lawn, a fire pit, and great views.</p>
 
 	<div style="display: flex; justify-content: flex-start; align-items: center; gap: 2rem;">
-		<a class="cta" href={BOOKING_URL}>Book now</a>
+		<BookingSearch />
 		<NoMinimum class="nomin" />
 	</div>
 </section>

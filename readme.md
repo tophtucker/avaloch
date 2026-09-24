@@ -16,9 +16,8 @@ I have written some about the design and process:
 - [tweets](https://x.com/RingoHosp/status/1803303449313849817)
 
 The hotel uses:
-- SiteMinder as booking engine ([read more](https://x.com/RingoHosp/status/1793097874361983188))
+- Stayntouch as both booking engine (its IBE) and property management system ([read more](https://x.com/RingoHosp/status/1793097874361983188))
 - Toast for restaurant booking
-- Stayntouch as property management system
 - MailChimp for email newsletters
 
 ---
