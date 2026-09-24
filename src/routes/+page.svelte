@@ -8,6 +8,7 @@
 	import PentathingOrnate from '$lib/icons/PentathingOrnate.svelte';
 	import Asterisk from '$lib/icons/Asterisk.svelte';
 	import Lightbox from '$lib/lightbox/Lightbox.svelte';
+	import { IBE_BASE_URL } from '$lib/config';
 	import BookingSearch from '$lib/components/BookingSearch.svelte';
 	import Gallery from './lodge/Gallery.svelte';
 	import NoMinimum from './lodge/NoMinimum.svelte';
@@ -63,6 +64,9 @@
 		<div class="grain-overlay" aria-hidden="true"></div>
 	</div>
 	<div class="wordmark">
+		<a class="trips" href={`${IBE_BASE_URL}/my-trips`}
+			><span class="hide-mobile">My&nbsp;</span>Trips</a
+		>
 		<Avaloch class="avaloch-lodge" />
 	</div>
 </header>
@@ -254,6 +258,22 @@
 		align-items: start;
 	}
 
+	/*
+		Absolute rather than a flex child: .wordmark packs its children to the
+		bottom, so an in-flow link would lift the logo. Colour is inherited white
+		from .wordmark; the shadow is for legibility over the hero video, which
+		is unblended at the top of the frame.
+	*/
+	.wordmark .trips {
+		position: absolute;
+		top: 4rem;
+		right: calc((100vw - var(--center-width)) / 2);
+		white-space: nowrap;
+		font-size: smaller;
+		text-transform: uppercase;
+		text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+	}
+
 	.hero-img-wrap {
 		position: relative;
 	}
@@ -339,6 +359,9 @@
 		.wordmark {
 			padding-top: 2rem;
 			padding-bottom: 2rem;
+		}
+		.wordmark .trips {
+			top: 2rem;
 		}
 		section {
 			margin: 2rem auto;
