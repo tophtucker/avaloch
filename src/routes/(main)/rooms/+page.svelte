@@ -8,8 +8,8 @@
 </svelte:head>
 
 <RenoNotice
-	>We have guest rooms in two buildings: the Lodge (b. 1966), open for the summer; and the Main
-	House (b. 1885), under renovation. For now, you have no choice!</RenoNotice
+	>We have guest rooms in two buildings: the Lodge (b. 1966), open seasonally; and the Main House
+	(b. 1885), under renovation. For now, you have no choice!</RenoNotice
 >
 
 <div class="inner blur">
@@ -39,7 +39,7 @@
 
 		<div class="header">Status</div>
 		<div>Closed for renovations</div>
-		<div>Open for summer 2026</div>
+		<div>Open seasonally</div>
 
 		<div class="header">Built</div>
 		<div>1885</div>
