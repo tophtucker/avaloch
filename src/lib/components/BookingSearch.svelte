@@ -289,4 +289,23 @@
 			width: 100%;
 		}
 	}
+
+	/* Thumbs, not cursors. The house style sizes controls for a mouse, which
+	   leaves every field here under the 44px touch target guideline. */
+	@media (max-width: 600px) {
+		input[type='date'],
+		input[type='number'],
+		input[type='text'] {
+			min-height: 44px;
+		}
+
+		button.check {
+			height: 44px;
+		}
+
+		.promo button {
+			min-height: 44px;
+			padding: 0 0.75em;
+		}
+	}
 </style>

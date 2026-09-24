@@ -73,7 +73,9 @@
 	<p>is the only lodging within walking distance to Tanglewood<sup>(9 min.)</sup>.</p>
 	<p>Perched on a big hill, it has guest rooms, a beautiful lawn, a fire pit, and great views.</p>
 
-	<div style="display: flex; justify-content: flex-start; align-items: center; gap: 2rem;">
+	<div
+		style="display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: center; gap: 2rem;"
+	>
 		<BookingSearch />
 		<NoMinimum class="nomin" />
 	</div>
@@ -294,6 +296,9 @@
 
 	:global(.nomin) {
 		width: 140px;
+		/* The booking form is a wide flex sibling; without this the badge gets
+		   shrunk to a dot on narrow screens instead of wrapping below it. */
+		flex: 0 0 auto;
 	}
 
 	@media (max-width: 1100px) {
