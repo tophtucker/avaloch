@@ -3,7 +3,8 @@
 	import Avaloch from '$lib/icons/Avaloch.svelte';
 	import ATI from '$lib/icons/ATI.svelte';
 	import Icon from '$lib/icons/Icon.svelte';
-	import { getCurrentPage, BOOKING_URL } from '$lib/nav.js';
+	import { getCurrentPage } from '$lib/nav.js';
+	import { IBE_BASE_URL } from '$lib/config';
 	const currentPage = $derived(getCurrentPage($page));
 	let { toggleNav } = $props();
 </script>
@@ -19,7 +20,8 @@
 			</a>
 			<div class="tagline show-medium">Lenox, Mass.</div>
 		</div>
-		<a class="book cta" href={BOOKING_URL}>Book<span class="hide-mobile">&nbsp;a&nbsp;room</span></a
+		<a class="book cta" href={IBE_BASE_URL}
+			>Book<span class="hide-mobile">&nbsp;a&nbsp;room</span></a
 		>
 	</div>
 	<div class="subheader">

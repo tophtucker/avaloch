@@ -1,4 +1,3 @@
-export const BOOKING_URL = 'https://direct-book.com/properties/AvalochInndirect';
 export const RESERVATIONS_URL = '#'; // 'https://tables.toasttab.com/restaurants/701827ce-60b2-4de3-a117-eeef40adcbe1/findTime';
 
 export const nav = [
@@ -48,7 +47,7 @@ export const nav = [
 // 		children: [
 // 			{ title: 'Main House', slug: 'main-house' },
 // 			{ title: 'Lodge', slug: 'lodge' },
-// 			{ title: 'Book a room', url: BOOKING_URL, disabled: true }
+// 			{ title: 'Book a room', url: IBE_BASE_URL, disabled: true }
 // 		]
 // 	},
 // 	{

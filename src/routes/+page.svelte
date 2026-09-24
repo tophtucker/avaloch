@@ -8,7 +8,7 @@
 	import PentathingOrnate from '$lib/icons/PentathingOrnate.svelte';
 	import Asterisk from '$lib/icons/Asterisk.svelte';
 	import Lightbox from '$lib/lightbox/Lightbox.svelte';
-	import { BOOKING_URL } from '$lib/nav.js';
+	import BookingSearch from '$lib/components/BookingSearch.svelte';
 	import Gallery from './lodge/Gallery.svelte';
 	import NoMinimum from './lodge/NoMinimum.svelte';
 	import Rule from './lodge/Rule.svelte';
@@ -73,8 +73,10 @@
 	<p>is the only lodging within walking distance to Tanglewood<sup>(9 min.)</sup>.</p>
 	<p>Perched on a big hill, it has guest rooms, a beautiful lawn, a fire pit, and great views.</p>
 
-	<div style="display: flex; justify-content: flex-start; align-items: center; gap: 2rem;">
-		<a class="cta" href={BOOKING_URL}>Book now</a>
+	<div
+		style="display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: center; gap: 2rem;"
+	>
+		<BookingSearch />
 		<NoMinimum class="nomin" />
 	</div>
 </section>
@@ -226,20 +228,6 @@
 		background: white;
 	}
 
-	.cta {
-		height: auto;
-		padding: 0.2em 0.4em;
-		border-width: 8px;
-		border-color: rgba(30, 30, 30, 0.5);
-		background: inherit;
-		color: inherit;
-	}
-
-	section .cta:hover {
-		background: rgba(70, 154, 123, 0.5);
-		color: black;
-	}
-
 	.banner {
 		font-size: 1.5rem;
 		max-width: var(--center-width);
@@ -308,6 +296,9 @@
 
 	:global(.nomin) {
 		width: 140px;
+		/* The booking form is a wide flex sibling; without this the badge gets
+		   shrunk to a dot on narrow screens instead of wrapping below it. */
+		flex: 0 0 auto;
 	}
 
 	@media (max-width: 1100px) {
