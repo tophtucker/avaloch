@@ -93,7 +93,7 @@
 </script>
 
 <div class="booking-search">
-	<h2 class="heading">Book here</h2>
+	<h2 class="heading">Book here!</h2>
 
 	<div class="fields">
 		<div class="field">
