@@ -20,15 +20,9 @@
 			</a>
 			<div class="tagline show-medium">Lenox, Mass.</div>
 		</div>
-		<div class="actions">
-			<!-- StayNtouch hosts guest self-service; same tab, it’s a continuation of the visit -->
-			<a class="trips" href={`${IBE_BASE_URL}/my-trips`}
-				><span class="hide-mobile">My&nbsp;</span>Trips</a
-			>
-			<a class="book cta" href={IBE_BASE_URL}
-				>Book<span class="hide-mobile">&nbsp;a&nbsp;room</span></a
-			>
-		</div>
+		<a class="book cta" href={IBE_BASE_URL}
+			>Book<span class="hide-mobile">&nbsp;a&nbsp;room</span></a
+		>
 	</div>
 	<div class="subheader">
 		<hr />
@@ -69,18 +63,8 @@
 		height: 2rem;
 	}
 
-	.actions {
+	.book {
 		justify-self: end;
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
-
-	.trips {
-		color: var(--black);
-		white-space: nowrap;
-		font-size: smaller;
-		text-transform: uppercase;
 	}
 
 	.outer-header {
@@ -215,9 +199,6 @@
 	@container (max-width: 500px) {
 		.home {
 			width: 40vw;
-		}
-		.actions {
-			gap: 0.5rem;
 		}
 		.outer-header {
 			grid-template-columns: 1fr 4fr 1fr;

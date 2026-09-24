@@ -148,6 +148,10 @@
 		</div>
 	</div>
 
+	<p class="manage">
+		Existing reservation? <a href={`${IBE_BASE_URL}/my-trips`}>Manage it here</a>.
+	</p>
+
 	<div class="promo">
 		<button
 			type="button"
@@ -244,6 +248,20 @@
 		color: #ffffff;
 	}
 
+	/*
+		Subordinate to the button on purpose: this is the path for the small
+		minority who already booked, and it should never compete with the search.
+	*/
+	.manage {
+		margin: 0.75rem 0 0;
+		font-size: smaller;
+		color: var(--black);
+	}
+
+	.manage a {
+		color: var(--green);
+	}
+
 	.promo {
 		display: flex;
 		align-items: center;
@@ -296,6 +314,16 @@
 		.promo button {
 			min-height: 44px;
 			padding: 0 0.75em;
+		}
+
+		/* A thumb-sized target without inflating the type. */
+		.manage {
+			line-height: 44px;
+		}
+
+		.manage a {
+			display: inline-block;
+			min-height: 44px;
 		}
 	}
 </style>
