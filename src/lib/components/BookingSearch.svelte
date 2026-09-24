@@ -93,6 +93,8 @@
 </script>
 
 <div class="booking-search">
+	<h2 class="heading">Book here</h2>
+
 	<div class="fields">
 		<div class="field">
 			<label for="booking-checkin">Check in</label>
@@ -212,6 +214,16 @@
 
 	.field.submit {
 		flex: 0 0 auto;
+	}
+
+	/* The field labels, one step up. Overrides the global h2 weight of 800. */
+	.heading {
+		font-family: var(--hed-font);
+		font-variation-settings: 'wght' 500;
+		font-size: 1.25rem;
+		text-transform: uppercase;
+		color: var(--green);
+		margin: 0 0 0.75rem;
 	}
 
 	label {
