@@ -8,14 +8,14 @@ const search = (params) => buildIbeSearchUrl({ baseUrl: IBE_BASE_URL, ...params 
 
 describe('IBE_BASE_URL', () => {
 	it('defaults to the avaloch property when PUBLIC_IBE_BASE_URL is unset', () => {
-		expect(IBE_BASE_URL).toBe('https://avaloch.ibe.stayntouch.com');
+		expect(IBE_BASE_URL).toBe('https://avalochinn.ibe.stayntouch.com');
 	});
 });
 
 describe('buildIbeSearchUrl', () => {
 	it('builds the canonical two-adult search exactly', () => {
 		expect(search({ checkin: '2026-10-24', checkout: '2026-10-26', adults: 2, kids: 0 })).toBe(
-			'https://avaloch.ibe.stayntouch.com/search-results?checkin=10-24-2026&checkout=10-26-2026&adults=2&kids=0'
+			'https://avalochinn.ibe.stayntouch.com/search-results?checkin=10-24-2026&checkout=10-26-2026&adults=2&kids=0'
 		);
 	});
 
@@ -28,7 +28,7 @@ describe('buildIbeSearchUrl', () => {
 			promotionCode: 'TANGLEWOOD WEEKEND'
 		});
 		expect(url).toBe(
-			'https://avaloch.ibe.stayntouch.com/search-results?checkin=10-24-2026&checkout=10-26-2026&adults=2&kids=0&promotionCode=TANGLEWOOD%20WEEKEND'
+			'https://avalochinn.ibe.stayntouch.com/search-results?checkin=10-24-2026&checkout=10-26-2026&adults=2&kids=0&promotionCode=TANGLEWOOD%20WEEKEND'
 		);
 		expect(url).not.toContain('+');
 	});
@@ -47,13 +47,13 @@ describe('buildIbeSearchUrl', () => {
 
 	it('carries kids through when there are children on the booking', () => {
 		expect(search({ checkin: '2026-10-24', checkout: '2026-10-26', adults: 2, kids: 3 })).toBe(
-			'https://avaloch.ibe.stayntouch.com/search-results?checkin=10-24-2026&checkout=10-26-2026&adults=2&kids=3'
+			'https://avalochinn.ibe.stayntouch.com/search-results?checkin=10-24-2026&checkout=10-26-2026&adults=2&kids=3'
 		);
 	});
 
 	it('zero-pads a single-digit month and day', () => {
 		expect(search({ checkin: '2027-1-5', checkout: '2027-1-9', adults: 1, kids: 0 })).toBe(
-			'https://avaloch.ibe.stayntouch.com/search-results?checkin=01-05-2027&checkout=01-09-2027&adults=1&kids=0'
+			'https://avalochinn.ibe.stayntouch.com/search-results?checkin=01-05-2027&checkout=01-09-2027&adults=1&kids=0'
 		);
 	});
 
@@ -83,14 +83,14 @@ describe('buildIbeSearchUrl', () => {
 	it('does not double up the slash before /search-results', () => {
 		expect(
 			buildIbeSearchUrl({
-				baseUrl: 'https://avaloch.ibe.stayntouch.com/',
+				baseUrl: 'https://avalochinn.ibe.stayntouch.com/',
 				checkin: '2026-10-24',
 				checkout: '2026-10-26',
 				adults: 2,
 				kids: 0
 			})
 		).toBe(
-			'https://avaloch.ibe.stayntouch.com/search-results?checkin=10-24-2026&checkout=10-26-2026&adults=2&kids=0'
+			'https://avalochinn.ibe.stayntouch.com/search-results?checkin=10-24-2026&checkout=10-26-2026&adults=2&kids=0'
 		);
 	});
 
