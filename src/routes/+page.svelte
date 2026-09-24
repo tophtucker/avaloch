@@ -226,20 +226,6 @@
 		background: white;
 	}
 
-	.cta {
-		height: auto;
-		padding: 0.2em 0.4em;
-		border-width: 8px;
-		border-color: rgba(30, 30, 30, 0.5);
-		background: inherit;
-		color: inherit;
-	}
-
-	section .cta:hover {
-		background: rgba(70, 154, 123, 0.5);
-		color: black;
-	}
-
 	.banner {
 		font-size: 1.5rem;
 		max-width: var(--center-width);
