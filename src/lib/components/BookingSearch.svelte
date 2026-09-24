@@ -172,19 +172,9 @@
 </div>
 
 <style>
-	/*
-		Brand palette for the booking engine, per the StayNtouch brand sheet. It
-		doesn’t match the greens/reds in static/styles.css — see the PR
-		description; if the site palette is meant to win, delete these three
-		variables and use --green / --red instead.
-	*/
 	.booking-search {
-		--ibe-dark-green: #425450;
-		--ibe-light-green: #9ed427;
-		--ibe-red: #fa5906;
-
 		background: #ffffff;
-		border: 1px solid var(--ibe-dark-green);
+		border: 1px solid var(--green);
 		padding: 1rem;
 		max-width: 640px;
 	}
@@ -216,7 +206,7 @@
 		font-variation-settings: 'wght' 500;
 		font-size: smaller;
 		text-transform: uppercase;
-		color: var(--ibe-dark-green);
+		color: var(--green);
 	}
 
 	input[type='date'],
@@ -226,31 +216,31 @@
 		font-variant-numeric: tabular-nums;
 		padding: 4px;
 		width: 100%;
-		border: 1px solid var(--ibe-dark-green);
+		border: 1px solid var(--green);
 		background: #ffffff;
 		color: var(--black);
 		border-radius: 0;
 	}
 
 	input:focus-visible {
-		outline: 2px solid var(--ibe-light-green);
+		outline: 2px solid var(--blue);
 		outline-offset: 1px;
 	}
 
 	/*
 		The site’s global button rule paints hover black-on-white; keep the shape
-		(inset/outset borders) and just swap in the booking-engine green.
+		(inset/outset borders) and just swap in the site green.
 	*/
 	button.check {
-		color: var(--ibe-dark-green);
-		border-color: var(--ibe-dark-green);
+		color: var(--green);
+		border-color: var(--green);
 		height: 2rem;
 		padding: 0 0.75rem;
 		white-space: nowrap;
 	}
 
 	button.check:hover {
-		background: var(--ibe-dark-green);
+		background: var(--green);
 		color: #ffffff;
 	}
 
@@ -274,7 +264,7 @@
 
 	.error {
 		margin: 0.75rem 0 0;
-		color: var(--ibe-red);
+		color: var(--red);
 		font-variation-settings: 'wght' 600;
 	}
 
