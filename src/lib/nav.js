@@ -1,4 +1,4 @@
-export const BOOKING_URL = 'https://direct-book.com/properties/AvalochInndirect';
+export const BOOKING_URL = 'https://avalochinn.ibe.stayntouch.com/';
 export const RESERVATIONS_URL = '#'; // 'https://tables.toasttab.com/restaurants/701827ce-60b2-4de3-a117-eeef40adcbe1/findTime';
 
 export const nav = [
