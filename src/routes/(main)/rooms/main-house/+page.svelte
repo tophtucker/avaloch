@@ -9,13 +9,8 @@
 	<title>Main House • Avaloch (formerly Apple Tree Inn) • Lenox, Mass.</title>
 </svelte:head>
 
-<RenoNotice
-	>Our Main House guest rooms will be the same charming quirky experience as ever. Renovations focus
-	on the common spaces: more beautiful, less confusing, better flow, and nicer windows!</RenoNotice
->
-
-<div class="inner blur">
-	<h1>Main House</h1>
+<div class="inner">
+	<h1>Main House (closed for renovations)</h1>
 
 	{#each building.rooms as { room_number, room_name, floor, tags, pics, overOstrich }, i (room_name)}
 		<div class="room">
